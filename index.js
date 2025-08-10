@@ -297,16 +297,16 @@ app.post('/spotify/play-random-top-track', async (req, res) => {
 const DOMAIN=process.env.DOMAIN;
 
 app.listen(port, () => {
-    console.log(`Server running at ${DOMAIN}${port}`);
+    console.log(`Server running at ${DOMAIN}${process.env.NODE_ENV !=='production'?port:''}`);
     console.log(`
         To use this API:
-        1. Visit ${DOMAIN}${port}/spotify - Home
-        2. Visit ${DOMAIN}${port}/spotify/login in your browser to authenticate with Spotify.
+        1. Visit ${DOMAIN}${process.env.NODE_ENV !=='production'?port:''}/spotify - Home
+        2. Visit ${DOMAIN}${process.env.NODE_ENV !=='production'?port:''}/spotify/login in your browser to authenticate with Spotify.
         3. After successful authentication, you can access the following endpoints:
-           - GET ${DOMAIN}${port}/spotify/top-tracks
-           - GET ${DOMAIN}${port}/spotify/now-playing
-           - GET ${DOMAIN}${port}/spotify/followed-artists
-           - POST ${DOMAIN}${port}/spotify/play-random-top-track (plays a random track from the top 10 list)
-           - POST ${DOMAIN}${port}/spotify/stop (requires Content-Type: application/json)
+           - GET ${DOMAIN}${process.env.NODE_ENV !=='production'?port:''}/spotify/top-tracks
+           - GET ${DOMAIN}${process.env.NODE_ENV !=='production'?port:''}/spotify/now-playing
+           - GET ${DOMAIN}${process.env.NODE_ENV !=='production'?port:''}/spotify/followed-artists
+           - POST ${DOMAIN}${process.env.NODE_ENV !=='production'?port:''}/spotify/play-random-top-track (plays a random track from the top 10 list)
+           - POST ${DOMAIN}${process.env.NODE_ENV !=='production'?port:''}/spotify/stop (requires Content-Type: application/json)
     `);
 });
